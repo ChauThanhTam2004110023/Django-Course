@@ -1,5 +1,6 @@
+{% load static %}
 <a href='/'>
-    <h1>HOME</h1>
+    <h1><img src="{% static 'images/Django.png' %}"></h1>
 </a>
 
 <form method="GET" action="{% url 'home' %}">

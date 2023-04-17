@@ -208,7 +208,7 @@ class userProfile(View):
             'user': self.user,
             'rooms': self.rooms,
             'topics': self.topics,
-            'room_messages': self.room_messages,
+            'room_messages': self.room_messages
         }
         return render(request, 'base/profile.html', context)
     
