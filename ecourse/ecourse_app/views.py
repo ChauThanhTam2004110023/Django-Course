@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
+from .forms import CreateUserForm
 # Create your views here.
 
 class loginPage(View):
@@ -45,28 +46,49 @@ class loginPage(View):
         return render(request, 'base/login_register.html', context)
 
     
+# class registerPage(View):
+#     def get(self, request):
+#         self.form = UserCreationForm()
+#         context = {
+#             'form': self.form
+#         }
+#         return render(request, 'base/login_register.html', context)
+    
+#     def post(self, request):
+#         self.form = UserCreationForm(self.request.POST)
+#         if self.form.is_valid():
+#             self.user = self.form.save(commit=False)
+#             self.user.username = self.user.username
+#             self.user.save()
+#             login(request, self.user)
+#             return redirect('home')
+#         else:
+#             messages.error(request, 'An error occurred during registration?')
+#         context = {
+#             'form': self.form
+#         }
+#         return render(request, 'base/login_register.html', context)
+
+
 class registerPage(View):
     def get(self, request):
-        self.form = UserCreationForm()
+        self.form = CreateUserForm()
         context = {
             'form': self.form
         }
-        return render(request, 'base/login_register.html', context)
+        return render(request, 'base/created_user.html', context)
     
     def post(self, request):
-        self.form = UserCreationForm(self.request.POST)
+        self.form = CreateUserForm(self.request.POST)
         if self.form.is_valid():
-            self.user = self.form.save(commit=False)
-            self.user.username = self.user.username
-            self.user.save()
-            login(request, self.user)
+            self.form.save()
             return redirect('home')
         else:
             messages.error(request, 'An error occurred during registration?')
         context = {
             'form': self.form
         }
-        return render(request, 'base/login_register.html', context)
+        return render(request, 'base/created_user.html', context)
 
 
 class logoutPage(View):

@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<h3>Register</h3>
+<div class="created_user-contanier">
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <label>Username: </label>
+        <input type="text" name="username" placeholder="Enter Username" />
+
+        <label>Email: </label>
+        <input type="email" name="email" placeholder="Enter email" />
+
+        <label>password1: </label>
+        <input type="password" name="password1" placeholder="Enter password1" />
+
+        <label>password2: </label>
+        <input type="password" name="password2" placeholder="Enter password2" />
+
+        {% comment %} {{form.username.label}}
+        {{form.username}}
+        
+        {{form.email.label}}
+        {{form.email}}
+
+        {{form.password1.label}}
+        {{form.password1}}
+
+        {{form.password2.label}}
+        {{form.password2}} {% endcomment %}
+
+
+
+        <input type="submit" name="Create User" >
+    </form>
+</div>
+
+
+{% endblock %}
