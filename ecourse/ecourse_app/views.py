@@ -199,9 +199,9 @@ class deleteMessage(View):
 class userProfile(View):
     def get(self, request, pk):
         user = User.objects.get(id=pk)
-        rooms = self.user.room_set.all()
+        rooms = user.room_set.all()
         topics = Topic.objects.all()
-        room_messages = self.user.message_set.all()
+        room_messages = user.message_set.all()
 
         context = {
             'user': user,
