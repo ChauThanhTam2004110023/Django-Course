@@ -139,7 +139,7 @@ class createRoom(View):
         form = RoomForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
-            host = request.user
+            room.host = request.user
             room.save()
             return redirect("home")
         context = {"form": form}
